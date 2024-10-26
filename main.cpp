@@ -10,6 +10,7 @@ int main() {
         std::vector<int> moves = { 0, 1, 0, 1, 0, 1, 0 };
 
         constexpr int numberOfGames = 1'000'000'000;
+
         const auto start = std::chrono::high_resolution_clock::now();
 
         for (int i = 0; i < numberOfGames; ++i) {
