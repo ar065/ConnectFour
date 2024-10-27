@@ -53,5 +53,7 @@ void BoardPrinter::printBoard(const Board& boardInstance,
         str += "\n";
     }
 
+    str += "\n";
+
     std::cout << str;
 }

@@ -22,7 +22,7 @@ void runGameBatch(int numGames, const std::vector<int>& moves, std::atomic<int>&
 }
 
 int main() {
-    constexpr bool run_benchmark = true;
+    constexpr bool run_benchmark = false;
 
     if (run_benchmark) {
         std::vector<int> moves = { 0, 1, 0, 1, 0, 1, 0 };
@@ -78,8 +78,9 @@ int main() {
         if (gameResult) {
             const auto& [move, result] = *gameResult;
             if (result.win) {
-                std::println("Player {} won!", game.getCurrentPlayer());
                 BoardPrinter::printBoard(game.board);
+                std::println("Player {} won!", game.getCurrentPlayer());
+                std::println("Winning move: {} {}", move.first, move.second);
             } else if (result.draw) {
                 std::println("Game ended in a draw!");
             }
