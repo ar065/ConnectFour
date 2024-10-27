@@ -1,7 +1,0 @@
-ninja_dyndep_version = 1.0
-build CMakeFiles/ConnectFour.dir/src/main.cpp.o: dyndep
-
-build CMakeFiles/ConnectFour.dir/src/Board.cpp.o: dyndep
-
-build CMakeFiles/ConnectFour.dir/src/BoardPrinter.cpp.o: dyndep
-
