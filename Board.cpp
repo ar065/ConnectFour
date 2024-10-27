@@ -42,13 +42,16 @@ GameResult Board::checkWin(std::pair<std::size_t, std::size_t> lastMove) const n
     // Horizontal check using ranges
     const auto rowStart = row * width;
     const auto rowView = std::span(board).subspan(rowStart, width);
+    
+    auto window = std::views::counted(rowView.begin() + std::max<int>(0, col - 3), 7);
+    auto consecutive = std::views::adjacent<4>(window);
+    
+    auto hasWin = std::ranges::any_of(consecutive, [player](const auto& group) {
+        const auto& [a, b, c, d] = group;
+        return a == player && b == player && c == player && d == player;
+    });
 
-    auto count = std::ranges::count_if(
-        std::views::counted(rowView.begin() + std::max<int>(0, col - 3), 7),
-        [player](const uint8_t cell) { return cell == player; }
-    );
-
-    if (count >= 4) return WIN_RESULT(player);
+    if (hasWin) return WIN_RESULT(player);
 
     // Vertical check - only need to check down
     if (row <= height - 4) {

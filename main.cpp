@@ -3,7 +3,9 @@
 #include <thread>
 #include <vector>
 #include <future>
+#include <random>
 #include "Game.hpp"
+#include "BoardPrinter.hpp"
 
 // Function to run a batch of games
 void runGameBatch(int numGames, const std::vector<int>& moves, std::atomic<int>& errorCount) {
@@ -56,6 +58,31 @@ int main() {
         std::println("{} games took {} seconds", numberOfGames, duration.count());
         if (errorCount > 0) {
             std::println("Encountered {} errors during simulation", errorCount.load());
+        }
+    } else {
+        Game game(7, 6, 2);
+
+        std::optional<MoveResult> gameResult = std::nullopt;
+
+        std::random_device dev;
+        std::mt19937 rng(dev());
+        std::uniform_int_distribution<std::mt19937::result_type> dist6(0, 6);
+
+        while (!gameResult) {
+            gameResult = game.place(dist6(rng));
+            BoardPrinter::printBoard(game.board);
+            std::this_thread::sleep_for(std::chrono::seconds(1));
+        }
+
+        // Print final result
+        if (gameResult) {
+            const auto& [move, result] = *gameResult;
+            if (result.win) {
+                std::println("Player {} won!", game.getCurrentPlayer());
+                BoardPrinter::printBoard(game.board);
+            } else if (result.draw) {
+                std::println("Game ended in a draw!");
+            }
         }
     }
 

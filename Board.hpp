@@ -35,6 +35,7 @@ class Board {
 public:
     const std::size_t width;
     const std::size_t height;
+    std::vector<uint8_t> board;
 
     // Constructor with size validation
     explicit Board(std::size_t width, std::size_t height)
@@ -90,7 +91,6 @@ public:
     }
 
 private:
-    std::vector<uint8_t> board;
     std::vector<uint8_t> heights;
     const std::size_t maxMoves;
     std::size_t movesPlayed{0};

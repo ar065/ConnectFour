@@ -10,4 +10,6 @@ add_executable(ConnectFour main.cpp
         Board.hpp
         Board.cpp
         Game.hpp
+        BoardPrinter.hpp
+        BoardPrinter.cpp
 )
