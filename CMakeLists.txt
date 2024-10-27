@@ -12,4 +12,8 @@ add_executable(ConnectFour src/main.cpp
         src/Game.hpp
         src/BoardPrinter.hpp
         src/BoardPrinter.cpp
+        src/Benchmark.cpp
+        src/Benchmark.hpp
+        src/AI.hpp
+        src/AI.cpp
 )
