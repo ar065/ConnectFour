@@ -70,8 +70,10 @@ int main() {
 
         while (!gameResult) {
             gameResult = game.place(dist6(rng));
-            BoardPrinter::printBoard(game.board);
-            std::this_thread::sleep_for(std::chrono::milliseconds(500));
+            if (!gameResult) {
+                BoardPrinter::printBoard(game.board);
+                std::this_thread::sleep_for(std::chrono::milliseconds(500));
+            }
         }
 
         // Print final result
