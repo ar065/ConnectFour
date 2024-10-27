@@ -78,9 +78,11 @@ int main() {
         if (gameResult) {
             const auto& [move, result] = *gameResult;
             if (result.win) {
-                BoardPrinter::printBoard(game.board);
+                const auto winDetails = game.board.checkWinDetailed(move.first, move.second);
+
+                BoardPrinter::printBoard(game.board, &winDetails.winningCells);
                 std::println("Player {} won!", game.getCurrentPlayer());
-                std::println("Winning move: {} {}", move.first, move.second);
+                // std::println("Winning move: {} {}", move.first, move.second);
             } else if (result.draw) {
                 std::println("Game ended in a draw!");
             }

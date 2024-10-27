@@ -97,3 +97,61 @@ GameResult Board::checkWin(std::pair<std::size_t, std::size_t> lastMove) const n
 
     return movesPlayed == maxMoves ? DRAW_RESULT : NO_WIN_RESULT;
 }
+
+WinResult Board::checkWinDetailed(std::size_t rowPlayed, std::size_t colPlayed) const noexcept {
+    const auto player = board[rowPlayed * width + colPlayed];
+
+    // Early exit if position is empty
+    if (player == 0) return {false, 0, {}};
+
+    constexpr std::array<std::pair<int, int>, 4> directions = {{
+        {0, 1},  // horizontal
+        {1, 0},  // vertical
+        {1, 1},  // diagonal down (↘)
+        {1, -1}  // diagonal up (↗)
+    }};
+
+    for (const auto& [dx, dy] : directions) {
+        std::vector<CellPosition> winningCells;
+        winningCells.reserve(4); // Reserve space for maximum possible winning cells
+        winningCells.push_back({rowPlayed, colPlayed});
+        auto count = 1;
+
+        // Check in the positive direction
+        for (auto i = 1; i < 4; ++i) {
+            const auto newRow = rowPlayed + dx * i;
+            const auto newCol = colPlayed + dy * i;
+
+            if (!isValidPosition(newRow, newCol, height, width) ||
+                board[newRow * width + newCol] != player) {
+                break;
+            }
+            winningCells.push_back({newRow, newCol});
+            ++count;
+        }
+
+        // Check in the negative direction
+        for (auto i = 1; i < 4; ++i) {
+            const auto newRow = rowPlayed - dx * i;
+            const auto newCol = colPlayed - dy * i;
+
+            if (!isValidPosition(newRow, newCol, height, width) ||
+                board[newRow * width + newCol] != player) {
+                break;
+            }
+            winningCells.push_back({newRow, newCol});
+            ++count;
+        }
+
+        if (count >= 4) {
+            // Sort winning cells by row, then by column
+            std::ranges::sort(winningCells, [](const auto& a, const auto& b) {
+                return a.row == b.row ? a.col < b.col : a.row < b.row;
+            });
+            
+            return {true, player, std::move(winningCells)};
+        }
+    }
+
+    return {false, 0, {}};
+}

@@ -2,11 +2,7 @@
 #include <string>
 #include <vector>
 #include <map>
-
-struct CellPosition {
-    int row;
-    int col;
-};
+#include "Board.hpp"
 
 class Board;  // Forward declaration, assuming Board class exists
 

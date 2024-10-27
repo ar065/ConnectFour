@@ -11,6 +11,21 @@
 #include <print>
 #include <stdexcept>
 
+struct CellPosition {
+    std::size_t row;
+    std::size_t col;
+
+    auto operator<=>(const CellPosition&) const = default;
+};
+
+struct WinResult {
+    bool hasWon{false};
+    uint8_t winner{0};
+    std::vector<CellPosition> winningCells;
+
+    auto operator<=>(const WinResult&) const = default;
+};
+
 struct GameResult {
     bool win{};
     bool draw{};
@@ -72,6 +87,9 @@ public:
     [[nodiscard]] GameResult
     checkWin(std::pair<std::size_t, std::size_t> lastMove) const noexcept;
 
+    [[nodiscard]] WinResult
+    checkWinDetailed(std::size_t rowPlayed, std::size_t colPlayed) const noexcept;
+
     [[nodiscard]] std::span<const uint8_t> view() const noexcept {
         return {board};
     }
@@ -94,6 +112,11 @@ private:
     std::vector<uint8_t> heights;
     const std::size_t maxMoves;
     std::size_t movesPlayed{0};
+
+    [[nodiscard]] static bool
+    isValidPosition(std::size_t row, std::size_t col, std::size_t numRows, std::size_t numCols) noexcept {
+        return row < numRows && col < numCols;
+    }
 };
 
 #endif // BOARD_HPP
