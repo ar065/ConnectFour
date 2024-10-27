@@ -7,11 +7,10 @@
 #include "Game.hpp"
 #include "BoardPrinter.hpp"
 
-// Function to run a batch of games
-void runGameBatch(int numGames, const std::vector<int>& moves, std::atomic<int>& errorCount) {
+void runGameBatch(const int numGames, const std::vector<int>& moves, std::atomic<int>& errorCount) {
     for (int i = 0; i < numGames; ++i) {
         try {
-            Game game(7, 6, 2); // Create a new game for each iteration
+            Game game(7, 6, 2);
             for (const int move : moves) {
                 auto _ = game.place(move);
             }
