@@ -12,8 +12,8 @@
 #include <stdexcept>
 
 struct CellPosition {
-    std::size_t row;
-    std::size_t col;
+    uint16_t row;
+    uint16_t col;
 
     auto operator<=>(const CellPosition&) const = default;
 };
@@ -48,12 +48,12 @@ struct std::formatter<GameResult> : std::formatter<string_view> {
 
 class Board {
 public:
-    const std::size_t width;
-    const std::size_t height;
+    const uint16_t width;
+    const uint16_t height;
     std::vector<uint8_t> board;
 
     // Constructor with size validation
-    explicit Board(std::size_t width, std::size_t height)
+    explicit Board(const uint16_t width, const uint16_t height)
         : width(width)
         , height(height)
         , maxMoves(width * height)
@@ -81,28 +81,28 @@ public:
     Board(const Board&) = delete;
     Board& operator=(const Board&) = delete;
 
-    [[nodiscard]] std::expected<std::pair<std::size_t, std::size_t>, std::string>
-    place(std::size_t col, uint8_t player) noexcept;
+    [[nodiscard]] std::expected<std::pair<uint16_t, uint16_t>, std::string>
+    place(uint16_t col, uint8_t player) noexcept;
 
     [[nodiscard]] GameResult
-    checkWin(std::pair<std::size_t, std::size_t> lastMove) const noexcept;
+    checkWin(std::pair<uint16_t, uint16_t> lastMove) const noexcept;
 
     [[nodiscard]] WinResult
-    checkWinDetailed(std::size_t rowPlayed, std::size_t colPlayed) const noexcept;
+    checkWinDetailed(uint16_t rowPlayed, uint16_t colPlayed) const noexcept;
 
     [[nodiscard]] std::span<const uint8_t> view() const noexcept {
         return {board};
     }
 
     void debug_print() const {
-        for (size_t i = 0; i < height; ++i) {
-            for (size_t j = 0; j < width; ++j) {
+        for (uint16_t i = 0; i < height; ++i) {
+            for (uint16_t j = 0; j < width; ++j) {
                 std::print("{} ", board[i * width + j]);
             }
             std::println("");
         }
         std::println("Heights: ");
-        for (size_t i = 0; i < width; ++i) {
+        for (uint16_t i = 0; i < width; ++i) {
             std::print("{} ", heights[i]);
         }
         std::println("");
@@ -110,11 +110,11 @@ public:
 
 private:
     std::vector<uint8_t> heights;
-    const std::size_t maxMoves;
-    std::size_t movesPlayed{0};
+    const uint16_t maxMoves;
+    uint16_t movesPlayed{0};
 
     [[nodiscard]] static bool
-    isValidPosition(std::size_t row, std::size_t col, std::size_t numRows, std::size_t numCols) noexcept {
+    isValidPosition(const uint16_t row, const uint16_t col, const uint16_t numRows, const uint16_t numCols) noexcept {
         return row < numRows && col < numCols;
     }
 };

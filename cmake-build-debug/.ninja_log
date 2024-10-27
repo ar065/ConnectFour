@@ -1,0 +1,25 @@
+# ninja log v6
+1	198	1730044035279041800	CMakeFiles/ConnectFour.dir/src/Board.cpp.o.ddi	5688e2b1b42020c
+1	205	1730044035279041800	CMakeFiles/ConnectFour.dir/src/BoardPrinter.cpp.o.ddi	5eda4fd3c12a8edc
+1	160	1730044057203095508	CMakeFiles/ConnectFour.dir/src/main.cpp.o.ddi	1767e330b8954b60
+160	174	1730044057373101086	CMakeFiles/ConnectFour.dir/CXX.dd	3dd4e898603f0b23
+160	174	1730044057373101086	/home/ar06/Documents/git/ConnectFour/cmake-build-debug/CMakeFiles/ConnectFour.dir/CXXModules.json	3dd4e898603f0b23
+160	174	1730044057373101086	CMakeFiles/ConnectFour.dir/src/main.cpp.o.modmap	3dd4e898603f0b23
+160	174	1730044057373101086	CMakeFiles/ConnectFour.dir/src/Board.cpp.o.modmap	3dd4e898603f0b23
+160	174	1730044057373101086	CMakeFiles/ConnectFour.dir/src/BoardPrinter.cpp.o.modmap	3dd4e898603f0b23
+175	1960	1730044057376434528	CMakeFiles/ConnectFour.dir/src/BoardPrinter.cpp.o	1597921cc62b377f
+174	2143	1730044057376434528	CMakeFiles/ConnectFour.dir/src/Board.cpp.o	8dd120bd32605c0c
+174	3178	1730044057373101086	CMakeFiles/ConnectFour.dir/src/main.cpp.o	9c7f244413a8625c
+3178	3270	1730044060379866388	ConnectFour	7d3c18dcdaeaec75
+3	266	1730044868102178053	CMakeFiles/ConnectFour.dir/src/Board.cpp.o.ddi	5688e2b1b42020c
+3	267	1730044868102178053	CMakeFiles/ConnectFour.dir/src/BoardPrinter.cpp.o.ddi	5eda4fd3c12a8edc
+2	319	1730044868102178053	CMakeFiles/ConnectFour.dir/src/main.cpp.o.ddi	1767e330b8954b60
+320	330	1730044868418854575	CMakeFiles/ConnectFour.dir/CXX.dd	3dd4e898603f0b23
+320	330	1730044868418854575	/home/ar06/Documents/git/ConnectFour/cmake-build-debug/CMakeFiles/ConnectFour.dir/CXXModules.json	3dd4e898603f0b23
+320	330	1730044868418854575	CMakeFiles/ConnectFour.dir/src/main.cpp.o.modmap	3dd4e898603f0b23
+320	330	1730044868418854575	CMakeFiles/ConnectFour.dir/src/Board.cpp.o.modmap	3dd4e898603f0b23
+320	330	1730044868418854575	CMakeFiles/ConnectFour.dir/src/BoardPrinter.cpp.o.modmap	3dd4e898603f0b23
+331	2053	1730044868428854887	CMakeFiles/ConnectFour.dir/src/Board.cpp.o	8dd120bd32605c0c
+331	2275	1730044868428854887	CMakeFiles/ConnectFour.dir/src/BoardPrinter.cpp.o	1597921cc62b377f
+331	3411	1730044868428854887	CMakeFiles/ConnectFour.dir/src/main.cpp.o	9c7f244413a8625c
+3411	3501	1730044871508950748	ConnectFour	7d3c18dcdaeaec75

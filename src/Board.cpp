@@ -11,8 +11,8 @@ namespace {
     }
 }
 
-std::expected<std::pair<std::size_t, std::size_t>, std::string>
-Board::place(std::size_t col, const uint8_t player) noexcept {
+std::expected<std::pair<uint16_t, uint16_t>, std::string>
+Board::place(uint16_t col, const uint8_t player) noexcept {
     if (col >= width) {
         return std::unexpected("Column out of bounds");
     }
@@ -29,7 +29,7 @@ Board::place(std::size_t col, const uint8_t player) noexcept {
     return std::pair(row, col);
 }
 
-GameResult Board::checkWin(std::pair<std::size_t, std::size_t> lastMove) const noexcept {
+GameResult Board::checkWin(std::pair<uint16_t, uint16_t> lastMove) const noexcept {
     // Early exit if win is impossible
     if (movesPlayed < 7) return NO_WIN_RESULT;
 
@@ -98,7 +98,7 @@ GameResult Board::checkWin(std::pair<std::size_t, std::size_t> lastMove) const n
     return movesPlayed == maxMoves ? DRAW_RESULT : NO_WIN_RESULT;
 }
 
-WinResult Board::checkWinDetailed(std::size_t rowPlayed, std::size_t colPlayed) const noexcept {
+WinResult Board::checkWinDetailed(const uint16_t rowPlayed, const uint16_t colPlayed) const noexcept {
     const auto player = board[rowPlayed * width + colPlayed];
 
     // Early exit if position is empty
@@ -119,8 +119,8 @@ WinResult Board::checkWinDetailed(std::size_t rowPlayed, std::size_t colPlayed) 
 
         // Check in the positive direction
         for (auto i = 1; i < 4; ++i) {
-            const auto newRow = rowPlayed + dx * i;
-            const auto newCol = colPlayed + dy * i;
+            const uint16_t newRow = rowPlayed + dx * i;
+            const uint16_t newCol = colPlayed + dy * i;
 
             if (!isValidPosition(newRow, newCol, height, width) ||
                 board[newRow * width + newCol] != player) {
@@ -132,8 +132,8 @@ WinResult Board::checkWinDetailed(std::size_t rowPlayed, std::size_t colPlayed) 
 
         // Check in the negative direction
         for (auto i = 1; i < 4; ++i) {
-            const auto newRow = rowPlayed - dx * i;
-            const auto newCol = colPlayed - dy * i;
+            const uint16_t newRow = rowPlayed - dx * i;
+            const uint16_t newCol = colPlayed - dy * i;
 
             if (!isValidPosition(newRow, newCol, height, width) ||
                 board[newRow * width + newCol] != player) {

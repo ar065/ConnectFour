@@ -6,7 +6,7 @@
 #include <optional>
 
 struct MoveResult {
-    std::pair<std::size_t, std::size_t> move;
+    std::pair<uint16_t, uint16_t> move;
     GameResult result;
 };
 
@@ -14,11 +14,11 @@ class Game {
 public:
     Board board;
     const uint8_t numberOfPlayers;
-    const std::size_t width;
-    const std::size_t height;
+    const uint16_t width;
+    const uint16_t height;
 
     // Constructor with parameter validation
-    explicit Game(const std::size_t width, const std::size_t height, const uint8_t numberOfPlayers)
+    explicit Game(const uint16_t width, const uint16_t height, const uint8_t numberOfPlayers)
         : board(width, height)
         , numberOfPlayers(numberOfPlayers)
         , width(width)
@@ -38,7 +38,7 @@ public:
     Game(const Game&) = delete;
     Game& operator=(const Game&) = delete;
 
-    [[nodiscard]] std::optional<MoveResult> place(const std::size_t col) {
+    [[nodiscard]] std::optional<MoveResult> place(const uint16_t col) {
         const auto moveResult = board.place(col, currentPlayer);
         if (!moveResult) {
             return std::nullopt;

@@ -1,0 +1,3 @@
+/home/ar06/Documents/git/ConnectFour/cmake-build-debug/CMakeFiles/ConnectFour.dir
+/home/ar06/Documents/git/ConnectFour/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/ar06/Documents/git/ConnectFour/cmake-build-debug/CMakeFiles/rebuild_cache.dir

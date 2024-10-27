@@ -16,8 +16,8 @@ const std::map<int, std::string> BoardPrinter::colors = {
     {6, "\033[36m"}   // cyan
 };
 
-std::string BoardPrinter::getColorCode(int colorIndex) {
-    auto it = colors.find(colorIndex);
+std::string BoardPrinter::getColorCode(const int colorIndex) {
+    const auto it = colors.find(colorIndex);
     return it != colors.end() ? it->second : colors.at(0);
 }
 
@@ -29,24 +29,22 @@ void BoardPrinter::printBoard(const Board& boardInstance,
 
     for (int row = 0; row < height; row++) {
         for (int col = 0; col < width; col++) {
-            int cellValue = boardInstance.board[row * width + col];
+            const int cellValue = boardInstance.board[row * width + col];
             std::string colorCode = getColorCode(cellValue);
 
             if (!win) {
-                str += colorCode + "⬤ " + RESET_COLOR;
+                str += colorCode.append("⬤ ").append(RESET_COLOR);
             } else {
-                bool isWinningCell = std::any_of(
-                    win->begin(), 
-                    win->end(),
-                    [row, col](const CellPosition& cell) {
-                        return cell.row == row && cell.col == col;
-                    }
+                bool isWinningCell = std::ranges::any_of(*win,
+                     [row, col](const CellPosition& cell) {
+                         return cell.row == row && cell.col == col;
+                     }
                 );
 
                 if (isWinningCell) {
-                    str += colorCode + BG_WHITE + "⬤" + RESET_COLOR + " ";
+                    str += colorCode.append(BG_WHITE).append("⬤").append(RESET_COLOR).append(" ");
                 } else {
-                    str += colorCode + "⬤ " + RESET_COLOR;
+                    str += colorCode.append("⬤ ").append(RESET_COLOR);
                 }
             }
         }

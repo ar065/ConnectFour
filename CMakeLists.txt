@@ -6,10 +6,10 @@ project(ConnectFour)
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON) 
 
-add_executable(ConnectFour main.cpp
-        Board.hpp
-        Board.cpp
-        Game.hpp
-        BoardPrinter.hpp
-        BoardPrinter.cpp
+add_executable(ConnectFour src/main.cpp
+        src/Board.hpp
+        src/Board.cpp
+        src/Game.hpp
+        src/BoardPrinter.hpp
+        src/BoardPrinter.cpp
 )
