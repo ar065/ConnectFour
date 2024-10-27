@@ -11,6 +11,14 @@ namespace {
     }
 }
 
+bool Board::canPlace(const uint16_t col) const noexcept {
+    if (const auto height = heights[col]; height >= this->height) {
+        return false;
+    }
+    return true;
+}
+
+
 std::expected<std::pair<uint16_t, uint16_t>, std::string>
 Board::place(uint16_t col, const uint8_t player) noexcept {
     if (col >= width) {

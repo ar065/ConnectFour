@@ -3,7 +3,6 @@
 #include <thread>
 #include <future>
 #include <iostream>
-#include <random>
 
 #include "AI.hpp"
 #include "Game.hpp"
@@ -42,7 +41,7 @@ int main() {
                 const auto col = getColFromInput();
                 gameResult = game.place(col);
             } else {
-                const auto col = getMove(game.board);
+                const auto col = getMove(game);
                 std::println("AI Play: Col: {}", col);
                 gameResult = game.place(col);
             }

@@ -35,10 +35,17 @@ public:
     Game& operator=(Game&&) noexcept = delete;
 
     // Delete copy operations
-    Game(const Game&) = delete;
-    Game& operator=(const Game&) = delete;
+    // Game(const Game&) = delete;
+    // Game& operator=(const Game&) = delete;
+    Game(const Game& other)
+       : board(other.board)  // This will work once we enable Board copying too
+       , numberOfPlayers(other.numberOfPlayers)
+       , width(other.width)
+       , height(other.height)
+       , currentPlayer(other.currentPlayer)
+    {}
 
-    [[nodiscard]] std::optional<MoveResult> place(const uint16_t col) {
+    [[nodiscard]] std::optional<MoveResult> place(const uint16_t col) noexcept {
         const auto moveResult = board.place(col, currentPlayer);
         if (!moveResult) {
             return std::nullopt;

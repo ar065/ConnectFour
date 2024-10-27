@@ -51,6 +51,8 @@ public:
     const uint16_t width;
     const uint16_t height;
     std::vector<uint8_t> board;
+    const uint16_t maxMoves;
+    uint16_t movesPlayed{0};
 
     // Constructor with size validation
     explicit Board(const uint16_t width, const uint16_t height)
@@ -78,11 +80,22 @@ public:
     Board& operator=(Board&&) noexcept = delete;
 
     // Delete copy operations
-    Board(const Board&) = delete;
-    Board& operator=(const Board&) = delete;
+    // Board(const Board&) = delete;
+    // Board& operator=(const Board&) = delete;
+    Board(const Board& other)
+        : width(other.width)
+        , height(other.height)
+        , board(other.board)  // vector has a copy constructor
+        , maxMoves(other.maxMoves)
+        , movesPlayed(other.movesPlayed)
+        , heights(other.heights)  // vector has a copy constructor
+    {}
 
     [[nodiscard]] std::expected<std::pair<uint16_t, uint16_t>, std::string>
     place(uint16_t col, uint8_t player) noexcept;
+
+    [[nodiscard]] bool
+    canPlace(uint16_t col) const noexcept;
 
     [[nodiscard]] GameResult
     checkWin(std::pair<uint16_t, uint16_t> lastMove) const noexcept;
@@ -110,8 +123,6 @@ public:
 
 private:
     std::vector<uint8_t> heights;
-    const uint16_t maxMoves;
-    uint16_t movesPlayed{0};
 
     [[nodiscard]] static bool
     isValidPosition(const uint16_t row, const uint16_t col, const uint16_t numRows, const uint16_t numCols) noexcept {
