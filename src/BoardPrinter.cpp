@@ -24,6 +24,7 @@ std::string BoardPrinter::getColorCode(const int colorIndex) {
 void BoardPrinter::printBoard(const Board& boardInstance, 
                             const std::vector<CellPosition>* win) {
     std::string str;
+    std::string rawStr;
     const int width = boardInstance.width;
     const int height = boardInstance.height;
 
@@ -31,6 +32,8 @@ void BoardPrinter::printBoard(const Board& boardInstance,
         for (int col = 0; col < width; col++) {
             const int cellValue = boardInstance.board[row * width + col];
             std::string colorCode = getColorCode(cellValue);
+
+            rawStr += std::to_string(cellValue).append(" ");
 
             if (!win) {
                 str += colorCode.append("⬤ ").append(RESET_COLOR);
@@ -48,10 +51,18 @@ void BoardPrinter::printBoard(const Board& boardInstance,
                 }
             }
         }
-        str += "\n";
+        str += "\n" + RESET_COLOR;
+        rawStr += "\n";
     }
 
-    str += "\n";
+    for (int col = 0; col < width - 1; col++)
+    {
+        str += std::to_string(col).append("-");
+    }
+    str += std::to_string(width - 1);
 
+    str += "\n\n";
+
+    std::cout << rawStr;
     std::cout << str;
 }

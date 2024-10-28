@@ -1,0 +1,17 @@
+There is a bug with win checking. This board has a horizontal right win (or Diagonal check (↙)), however it isn't being counted. This seems to be consistent as well.
+
+Before:
+1 1 0 2 2 2 1
+1 1 0 2 2 1 2
+2 1 0 2 1 1 2
+2 2 1 1 2 2 1
+2 2 2 1 1 1 2
+1 2 1 1 1 2 1
+
+Bugged board state:
+1 1 0 2 2 2 1
+1 1 0 2 2 1 2
+2 1 2 2 1 1 2
+2 2 1 1 2 2 1
+2 2 2 1 1 1 2
+1 2 1 1 1 2 1

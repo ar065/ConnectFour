@@ -37,7 +37,7 @@ int main() {
         std::optional<MoveResult> gameResult = std::nullopt;
 
         while (!gameResult) {
-            if (game.getCurrentPlayer() == 1) {
+            if (game.currentPlayer == 1) {
                 const auto col = getColFromInput();
                 gameResult = game.place(col);
             } else {
@@ -57,8 +57,9 @@ int main() {
                 const auto [hasWon, winner, winningCells] = game.board.checkWinDetailed(move.first, move.second);
 
                 BoardPrinter::printBoard(game.board, &winningCells);
-                std::println("Player {} won!", game.getCurrentPlayer());
-                // std::println("Winning move: {} {}", move.first, move.second);
+                std::println("Player {} won!", game.currentPlayer);
+                std::println("Winning move: {} {}", move.first, move.second);
+                std::println("Wincheck2: {} Winner: {}", hasWon, winner);
             } else if (result.draw) {
                 std::println("Game ended in a draw!");
             }

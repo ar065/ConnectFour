@@ -52,6 +52,8 @@ public:
     const uint16_t height;
     std::vector<uint8_t> board;
     const uint16_t maxMoves;
+    std::vector<uint8_t> heights;
+
     uint16_t movesPlayed{0};
 
     // Constructor with size validation
@@ -122,8 +124,6 @@ public:
     }
 
 private:
-    std::vector<uint8_t> heights;
-
     [[nodiscard]] static bool
     isValidPosition(const uint16_t row, const uint16_t col, const uint16_t numRows, const uint16_t numCols) noexcept {
         return row < numRows && col < numCols;

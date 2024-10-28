@@ -16,6 +16,7 @@ public:
     const uint8_t numberOfPlayers;
     const uint16_t width;
     const uint16_t height;
+    uint8_t currentPlayer;
 
     // Constructor with parameter validation
     explicit Game(const uint16_t width, const uint16_t height, const uint8_t numberOfPlayers)
@@ -58,13 +59,6 @@ public:
         currentPlayer = (currentPlayer % numberOfPlayers) + 1;
         return std::nullopt;
     }
-
-    [[nodiscard]] uint8_t getCurrentPlayer() const noexcept {
-        return currentPlayer;
-    }
-
-private:
-    uint8_t currentPlayer;
 };
 
 #endif // GAME_HPP
